@@ -12,6 +12,15 @@ const dbConfig = defineConfig({
         user: env.get('DB_USER'),
         password: env.get('DB_PASSWORD'),
         database: env.get('DB_DATABASE'),
+        ssl: {
+          rejectUnauthorized: false, // ESSENCIAL para Railway
+        },
+      },
+      pool: {
+        min: 0,
+        max: 10,
+        idleTimeoutMillis: 30000,
+        acquireTimeoutMillis: 60000,
       },
       migrations: {
         naturalSort: true,

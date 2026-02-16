@@ -14,28 +14,16 @@ const dbConfig = defineConfig({
         database: env.get('DB_DATABASE'),
         ssl: {
           rejectUnauthorized: false,
-          require: true, // FORÇA SSL
         },
-        connectionTimeoutMillis: 30000, // 30 segundos
-        idleTimeoutMillis: 30000,
-        max: 20,
-        keepAlive: true,
-        keepAliveInitialDelayMillis: 10000,
       },
       pool: {
-        min: 1, // Mínimo 1 conexão sempre ativa
-        max: 5, // Máximo 5 para evitar sobrecarga
-        acquireTimeoutMillis: 60000,
-        createTimeoutMillis: 30000,
-        idleTimeoutMillis: 30000,
-        reapIntervalMillis: 1000,
-        createRetryIntervalMillis: 100,
+        min: 1,
+        max: 5,
       },
       migrations: {
         naturalSort: true,
         paths: ['database/migrations'],
       },
-      healthCheck: true,
     },
   },
 })

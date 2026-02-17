@@ -1,9 +1,9 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
-import DashboardController from '#controllers/DashboardController'
-import RelatorioController from '#controllers/RelatorioController'
-import FichaController from '#controllers/FichaController'
-import CMVController from '#controllers/CMVController'
+const DashboardController = () => import('#controllers/DashboardController')
+const RelatorioController = () => import('#controllers/RelatorioController')
+const FichaController = () => import('#controllers/FichaController')
+const CMVController = () => import('#controllers/CMVController')
 const UsuarioController = () => import('#controllers/UsuarioController')
 const UnidadeController = () => import('#controllers/UnidadeController')
 const CategoriaController = () => import('#controllers/CategoriaController')

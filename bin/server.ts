@@ -1,13 +1,14 @@
-import { Env } from '@adonisjs/core/env'
+/**
+ * HTTP server entrypoint
+ */
 
-export default await Env.create(new URL('../', import.meta.url), {
-  APP_KEY: Env.schema.string(),
-  NODE_ENV: Env.schema.enum(['development', 'production', 'test'] as const),
-  HOST: Env.schema.string.optional(),
-  PORT: Env.schema.number.optional(),
-  LOG_LEVEL: Env.schema.string.optional(),
-  TZ: Env.schema.string.optional(),
+import { Ignitor } from '@adonisjs/core'
 
-  // 🔥 ÚNICA variável de banco necessária
-  DATABASE_URL: Env.schema.string(),
-})
+new Ignitor(new URL('../', import.meta.url))
+  .tap((app) => {
+    app.booting(async () => {
+      await import('#start/env')
+    })
+  })
+  .httpServer()
+  .start()
